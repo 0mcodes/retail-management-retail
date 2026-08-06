@@ -1,6 +1,9 @@
 package com.om.retail_management.entity;
 import jakarta.persistence.*;
-import lombok.Getter;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.PositiveOrZero;
+
 
 @Entity
 @Table(name="product")
@@ -11,14 +14,14 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Getter
+    @NotBlank(message = "Product Name is required")
     @Column(nullable = false)
     private String name;
 
-    @Getter
+    @Positive(message="Price must be greater than 0")
     private Double price;
 
-    @Getter
+    @PositiveOrZero(message = "Quantity cannot be negative")
     private Integer quantity;
 
     public Product(){
